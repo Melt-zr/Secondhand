@@ -27,7 +27,7 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
 
         // 登录和注册接口无需鉴权
         // TODO: 添加登录注册接口
-        if (path.startsWith("/user/login") || path.startsWith("/user/register")) {
+        if (path.startsWith("/api/user/login") || path.startsWith("/api/user/register")) {
             return chain.filter(exchange);
         }
 
