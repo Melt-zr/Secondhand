@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+    profiles:
+      active: dev
+    main:
+      allow-circular-references: true
+    datasource:
+      druid:
+        driver-class-name: ${tri.common.datasource.driver-class-name}
+        url: jdbc:mysql://${tri.common.datasource.host}:${tri.common.datasource.port}/${tri.common.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        username: ${tri.common.datasource.username}
+        password: ${tri.common.datasource.password}
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.sky.entity
+  configuration:
+    map-underscore-to-camel-case: true
