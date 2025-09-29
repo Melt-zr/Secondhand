@@ -1,0 +1,24 @@
+server:
+  port: 8073
+
+spring:
+  application:
+    name: api
+
+# OpenFeign 配置
+feign:
+  client:
+    config:
+      user-service:
+        connectTimeout: 5000
+        readTimeout: 5000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+# 用户服务地址
+user:
+  service:
+    url: http://localhost:8072

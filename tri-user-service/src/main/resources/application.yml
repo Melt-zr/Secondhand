@@ -1,0 +1,26 @@
+server:
+  port: 8072
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.150.128:3306/tri_user_service_db?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 626520QQ
+
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.150.128:8848
+        namespace: public
+        group: Secondhand_GROUP
+      config:
+        server-addr: 192.168.150.128:8848
+        namespace: public
+        group: Secondhand_GROUP
+        import-check:
+          enabled: false
