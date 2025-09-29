@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="tri_common_service_db@localhost" uuid="1972d719-e5d9-4b5f-922d-cf080624e3cc">
+    <data-source source="LOCAL" name="tri_user_service_db@192.168.150.128" uuid="018376cf-2b08-4cd1-878c-0cab1c38de9f">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/tri_common_service_db</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.150.128:3306/tri_user_service_db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />

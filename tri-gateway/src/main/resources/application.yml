@@ -4,7 +4,14 @@ server:
 spring:
   application:
     name: gateway-service
+  main:
+    web-application-type: reactive
   cloud:
+    nacos:
+      server-addr: 192.168.150.128:8848 # nacos地址
+      discovery:
+        namespace: public
+        group: Secondhand_GROUP
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
@@ -19,8 +26,14 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user/**
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/api/product/**
+            - Path=/user/**
+  # 禁用数据源自动配置
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+# JWT配置
+jwt:
+  secret: bXlTZWNyZXRLZXlGb3JKV1RfVGhpSXNNeVNlY3JldEtleUZvckpXVF9UaGlJc015U2VjcmV0S2V5Rm9ySldUX1RoaUlzTXlTZWNyZXRLZXk= # Base64编码的密钥
+  expire: 86400000 # 24小时过期时间（毫秒）
