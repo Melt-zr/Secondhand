@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trade.triuserservice.domain.dto.LoginDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
+import com.trade.triuserservice.domain.dto.UserUpdateDTO;
 import com.trade.triuserservice.domain.po.User;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.mapper.UserMapper;
 import com.trade.triuserservice.service.UserService;
 import com.trade.triuserservice.utils.JwtUtil;
+import com.trade.triuserservice.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -95,7 +97,42 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void update(UserRegisterDTO userDTO) {
+    public void update(UserUpdateDTO userUpdateDTO) {
+        // 从上下文获取当前用户ID
+        String userId = UserContext.getCurrentUserId();
+
+        // 添加空值检查
+        if (userId == null || userId.isEmpty()) {
+            System.out.println("用户未登录");
+            throw new RuntimeException("用户未登录");
+        }
+
+        // 构建更新条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", userId);
+
+        // 构建更新对象
+        User user = new User();
+        if (userUpdateDTO.getUserName() != null) {
+            user.setUserName(userUpdateDTO.getUserName());
+        }
+        if (userUpdateDTO.getGender() != null) {
+            user.setGender(userUpdateDTO.getGender());
+        }
+        if (userUpdateDTO.getBirthday() != null) {
+            user.setBirthday(userUpdateDTO.getBirthday());
+        }
+        if (userUpdateDTO.getRegionCode() != null) {
+            user.setRegionCode(userUpdateDTO.getRegionCode());
+        }
+        if (userUpdateDTO.getAvatarImageId() != null) {
+            user.setAvatarImageId(userUpdateDTO.getAvatarImageId());
+        }
+
+        // 执行更新
+        this.update(user, queryWrapper);
     }
+
+
 }
 
