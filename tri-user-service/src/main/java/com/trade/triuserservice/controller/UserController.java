@@ -3,6 +3,7 @@ package com.trade.triuserservice.controller;
 
 import com.trade.triuserservice.domain.dto.LoginDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
+import com.trade.triuserservice.domain.dto.UserUpdateDTO;
 import com.trade.triuserservice.domain.vo.ResultVO;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.service.UserService;
@@ -57,10 +58,10 @@ public class UserController {
     * @return 修改结果
     *
     * */
-    @PostMapping("/update")
-    public ResultVO<String> update(@Validated @RequestBody ) {
+    @PutMapping("/update")
+    public ResultVO<String> update(@Validated @RequestBody UserUpdateDTO userUpdateDTO) {
         try {
-            userService.update();
+            userService.update(userUpdateDTO);
             return ResultVO.success("修改成功");
         } catch (RuntimeException e) {
             return ResultVO.error(e.getMessage());
