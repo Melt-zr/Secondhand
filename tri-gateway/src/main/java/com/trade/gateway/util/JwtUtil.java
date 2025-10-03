@@ -37,9 +37,10 @@ public class JwtUtil {
     }
 
     // 生成Token
-    public String generateToken(String userId, long expireMillis) {
+    public String generateToken(String userId,String userName, long expireMillis) {
         return Jwts.builder()
                 .setSubject(userId)
+                .claim("userName", userName)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expireMillis))
                 .signWith(key, SignatureAlgorithm.HS256)

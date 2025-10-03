@@ -92,8 +92,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new RuntimeException("密码错误");
         }
 
+
         // 生成并返回token（此处简化处理，实际应生成JWT或session token）
-        return jwtUtil.generateToken(user.getUserId(), 7 * 24 * 60 * 60 * 1000);
+
+        return jwtUtil.generateToken(user.getUserId(),user.getUserName(), 7 * 24 * 60 * 60 * 1000);
     }
 
     @Override

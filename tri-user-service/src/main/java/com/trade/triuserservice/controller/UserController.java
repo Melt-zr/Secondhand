@@ -4,12 +4,21 @@ package com.trade.triuserservice.controller;
 import com.trade.triuserservice.domain.dto.LoginDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
 import com.trade.triuserservice.domain.dto.UserUpdateDTO;
+import com.trade.triuserservice.domain.po.User;
 import com.trade.triuserservice.domain.vo.ResultVO;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.service.UserService;
+import com.trade.triuserservice.utils.UserContext;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -34,7 +43,7 @@ public class UserController {
         }
     }
 
-    /*
+    /**
     * 用户登录
     * @param loginDTO 登录信息
     * @return 登录结果
@@ -52,9 +61,9 @@ public class UserController {
         }
     }
 
-    /*
+    /**
     * 用户资料修改
-    * @param userDTO 修改信息
+    * @param userUpdateDTO 修改信息
     * @return 修改结果
     *
     * */
@@ -69,4 +78,5 @@ public class UserController {
             return ResultVO.error("修改失败，请稍后重试");
         }
     }
+
 }

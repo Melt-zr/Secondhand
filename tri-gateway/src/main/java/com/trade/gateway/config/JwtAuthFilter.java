@@ -42,10 +42,13 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
         try {
             Claims claims = jwtUtil.parseToken(token);
             String userId = claims.getSubject();
+            String userName = claims.get("userName", String.class);
 
-            // 将 userId 传递给下游微服务
+
+            // 将 userId,userName 传递给下游微服务
             ServerHttpRequest mutatedRequest = request.mutate()
                     .header("X-User-Id", userId)
+                    .header("X-User-Name", userName)
                     .build();
 
             return chain.filter(exchange.mutate().request(mutatedRequest).build());
