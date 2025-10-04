@@ -1,14 +1,13 @@
 server:
-  port: 8072
-
+  port: 8075
 
 spring:
   application:
-    name: user-service
+    name: order-service
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.150.128:3306/tri_user_service_db?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.150.128:3306/tri_order_service_db?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 626520QQ
 
@@ -32,3 +31,9 @@ spring:
     username: Secondhand
     password: 626520QQ
     virtual-host: /Secondhand
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans

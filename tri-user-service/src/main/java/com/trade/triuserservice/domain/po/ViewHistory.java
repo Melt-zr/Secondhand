@@ -11,8 +11,6 @@ import java.util.Date;
 @TableName("tri_view_history")
 public class ViewHistory {
 
-    private int id;
-
     private int userId;
 
     private int productId;

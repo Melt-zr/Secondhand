@@ -2,11 +2,11 @@ tri:
   common:
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      host: localhost
+      host: 192.168.150.128
       port: 3306
       database: tri_common_service_db
       username: root
-      password: 1234
+      password: 626520QQ
     alioss:
       endpoint: oss-cn-hangzhou.aliyuncs.com
       access-key-id:

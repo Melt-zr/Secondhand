@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.tri.common.api.mapper")
+@MapperScan("com.tri.common.mapper")
 @Slf4j
 public class CommonApplication {
     public static void main(String[] args) {

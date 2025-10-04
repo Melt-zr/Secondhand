@@ -3,11 +3,19 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-order-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-product-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-product-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-user-service/src/main/java/com/trade/triuserservice/controller/UserController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tri-user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tri-user-service/src/main/resources/application.yml" charset="GBK" />
   </component>
 </project>
