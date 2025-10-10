@@ -4,6 +4,24 @@ server:
 spring:
   application:
     name: api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.150.128:8848
+        namespace: public
+        group: Secondhand_GROUP
+      config:
+        server-addr: 192.168.150.128:8848
+        namespace: public
+        group: Secondhand_GROUP
+        import-check:
+          enabled: false
+  autoconfigure:
+    exclude:
+      # 数据库相关排除
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      # rabbitmq排除
+      - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
 
 # OpenFeign 配置
 feign:

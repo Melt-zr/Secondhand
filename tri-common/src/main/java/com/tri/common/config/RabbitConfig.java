@@ -77,4 +77,5 @@ public class RabbitConfig {
         logger.info("绑定 orderQueue 到 orderUserExchange");
         return BindingBuilder.bind(orderQueue).to(orderUserExchange).with("orderCredit.update");
     }
+
 }

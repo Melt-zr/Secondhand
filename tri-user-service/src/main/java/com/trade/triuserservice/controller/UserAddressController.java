@@ -5,12 +5,15 @@ import com.trade.triuserservice.domain.po.UserAddress;
 import com.trade.triuserservice.domain.vo.ResultVO;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.service.UserAddressService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addresses")
+@Tag(name = "收货地址", description = "用户收货地址相关接口")
 public class UserAddressController {
     @Autowired
     private UserAddressService userAddressService;
@@ -20,7 +23,8 @@ public class UserAddressController {
     * @param UserAddressDTO 地址信息
     * @return 新增的地址
     * */
-    @PostMapping()
+    @Operation(summary = "新增收货地址", description = "新增用户收货地址")
+    @PostMapping("/add")
     public ResultVO<String> addAddress(@Validated @RequestBody UserAddressDTO userAddressDTO) {
         try {
             userAddressService.addAddress(userAddressDTO);
@@ -37,7 +41,8 @@ public class UserAddressController {
     * @param userId 用户ID
     * @return 收货地址列表
     * */
-    @GetMapping()
+    @Operation(summary = "获取收货地址列表", description = "获取用户收货地址列表")
+    @GetMapping("/getall")
     public ResultVO<UserAddress[]> getAddresses() {
         try {
             UserAddress[] addresses = userAddressService.getAddresses();
@@ -55,7 +60,8 @@ public class UserAddressController {
     * @param userAddressDTO 地址信息
     * @return 修改结果
     * */
-    @PutMapping("/{id}")
+    @Operation(summary = "修改收货地址", description = "修改用户收货地址")
+    @PutMapping("/update/{id}")
     public ResultVO<String> updateAddress(@PathVariable("id") int addressId, @Validated @RequestBody UserAddressDTO userAddressDTO) {
         try {
             userAddressService.updateAddress(addressId, userAddressDTO);
@@ -72,7 +78,8 @@ public class UserAddressController {
     * @param addressId 地址ID
     * @return 删除结果
     * */
-    @DeleteMapping("/{id}")
+    @Operation(summary = "删除收货地址", description = "删除用户收货地址")
+    @DeleteMapping("/delete/{id}")
     public ResultVO<String> deleteAddress(@PathVariable("id") int addressId) {
         try {
             userAddressService.deleteAddress(addressId);
@@ -89,6 +96,7 @@ public class UserAddressController {
     * @param addressId 地址ID
     * @return 设置结果
     * */
+    @Operation(summary = "设置默认收货地址", description = "设置用户默认收货地址")
     @PutMapping("/default/{id}")
     public ResultVO<String> setDefaultAddress(@PathVariable("id") int addressId) {
         try {

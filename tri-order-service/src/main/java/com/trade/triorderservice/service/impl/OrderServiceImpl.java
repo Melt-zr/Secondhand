@@ -18,8 +18,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    @Autowired
-    private OrderService orderService;
 
     @Override
     public void createOrder(OrderDTO orderDTO) {

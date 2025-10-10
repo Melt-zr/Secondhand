@@ -58,8 +58,9 @@
     <!-- 添加Druid版本 -->
     <druid.version>1.2.20</druid.version>
 
-    <!-- springfox-swagger -->
-    <springfox.version>3.0.0</springfox.version>
+    <!-- 添加SpringDoc版本 -->
+    <springdoc.version>2.5.0</springdoc.version>
+
   </properties>
 
   <!-- 依赖版本统一管理 -->
@@ -167,12 +168,13 @@
         <version>${mybatis.plus.boot.starter.version}</version>
       </dependency>
 
-      <!-- swagger -->
+      <!-- SpringDoc OpenAPI UI - 适用于 Spring Boot 3.x -->
       <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger2</artifactId>
-        <version>${springfox.version}</version>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        <version>${springdoc.version}</version>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
   

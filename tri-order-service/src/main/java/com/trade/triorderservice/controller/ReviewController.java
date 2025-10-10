@@ -3,6 +3,8 @@ package com.trade.triorderservice.controller;
 import com.trade.triorderservice.domain.dto.ReviewDTO;
 import com.trade.triorderservice.domain.vo.ResultVO;
 import com.trade.triorderservice.service.ReviewService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/review")
+@Tag(name = "评价管理", description = "评价相关接口")
 public class ReviewController {
 
     private ReviewService reviewService;
@@ -19,6 +22,7 @@ public class ReviewController {
      * @param reviewDTO 评论信息
      * @return 评论结果
      */
+    @Operation(summary = "评论", description = "用户评论商品")
     @RequestMapping("/buyerReview")
     public ResultVO<String> createReview(@Validated @RequestBody ReviewDTO reviewDTO) {
         try {

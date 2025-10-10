@@ -6,8 +6,6 @@ import com.tri.common.constant.MessageConstant;
 import com.tri.common.pojo.entity.ImageRecord;
 import com.tri.common.result.Result;
 import com.tri.common.utils.AliOssUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +19,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/common/image")
-@Api(tags = "图片相关接口")
 @Slf4j
 public class OssController {
 
@@ -31,7 +28,6 @@ public class OssController {
     @Autowired
     private ImageRecordMapper imageRecordMapper;
 
-    @ApiOperation(value = "上传图片")
     @PostMapping("/upload")
     public Result upload(@RequestParam("file") MultipartFile file) {
         log.info("图片上传：{}",file.getOriginalFilename());
@@ -60,7 +56,6 @@ public class OssController {
 
 
     //批量上传
-    @ApiOperation(value = "批量上传图片")
     @PostMapping("/uploadBatch")
     @Transactional
     public Result uploadBatch(@RequestParam("files") MultipartFile[] files) {
@@ -103,14 +98,12 @@ public class OssController {
     }
 
     //根据id获取imageUrl
-    @ApiOperation(value = "根据id获取imageUrl")
     @GetMapping("/{id}")
     public Result<ImageRecord> getImageUrlById(@PathVariable("id") Long id) {
         ImageRecord imageRecord = imageRecordMapper.selectById(id);
         return Result.success(imageRecord);
     }
 
-    @ApiOperation(value = "根据ids批量获取imageUrl")
     @PostMapping("/getBatch")
     public Result<List<ImageRecord>> getImageUrlByIds(@RequestBody List<Long> ids) {
         List<ImageRecord> imageRecords = imageRecordMapper.selectByids(ids);

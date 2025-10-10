@@ -9,6 +9,8 @@ import com.trade.triuserservice.domain.vo.ResultVO;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.service.UserService;
 import com.trade.triuserservice.utils.UserContext;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "用户管理", description = "用户相关接口")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -31,6 +34,7 @@ public class UserController {
      * @param registerDTO 注册信息
      * @return 注册结果
      */
+    @Operation(summary = "用户注册", description = "注册新用户")
     @PostMapping("/register")
     public ResultVO<UserRegisterVO> register(@Validated @RequestBody UserRegisterDTO registerDTO) {
         try {
@@ -49,6 +53,7 @@ public class UserController {
     * @return 登录结果
     *
     * */
+    @Operation(summary = "用户登录", description = "用户登录")
     @PostMapping("/login")
     public ResultVO<String> login(@Validated @RequestBody LoginDTO loginDTO) {
         try {
@@ -67,6 +72,7 @@ public class UserController {
     * @return 修改结果
     *
     * */
+    @Operation(summary = "用户资料修改", description = "修改用户资料")
     @PutMapping("/update")
     public ResultVO<String> update(@Validated @RequestBody UserUpdateDTO userUpdateDTO) {
         try {

@@ -16,7 +16,7 @@ import java.util.Map;
 public class UserCreditUpdateListener {
     private final UserMapper userMapper;
 
-    @RabbitListener(queues = "user.credit.update.queue")
+    @RabbitListener(queues = "order.queue")
     private void handleCreditUpdateMessage(Map<String, Object> message) {
         try {
             log.info("接收到信用分更新消息: {}", message);

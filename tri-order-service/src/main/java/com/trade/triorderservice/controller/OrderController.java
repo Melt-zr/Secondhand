@@ -4,6 +4,8 @@ import com.trade.triorderservice.domain.dto.OrderDTO;
 import com.trade.triorderservice.domain.po.Order;
 import com.trade.triorderservice.domain.vo.ResultVO;
 import com.trade.triorderservice.service.OrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@Tag(name = "订单服务", description = "订单服务接口")
 public class OrderController {
     @Autowired
     private OrderService orderService;
@@ -24,6 +27,7 @@ public class OrderController {
     * @param orderDTO 订单信息
     * @return 创建结果
     */
+    @Operation(summary = "创建订单", description = "创建订单")
     @RequestMapping("/create")
     public ResultVO<String> createOrder(@Validated @RequestBody OrderDTO orderDTO) {
         try {
@@ -41,6 +45,7 @@ public class OrderController {
     * @param orderNo 订单号
     * @return 订单支付结果
     */
+    @Operation(summary = "订单已支付，未发货", description = "订单已支付，未发货")
     @RequestMapping("/paid/{orderNo}")
     public ResultVO<String> paidOrder(@Validated @PathVariable("orderNo") String orderNo) {
         try {
@@ -58,6 +63,7 @@ public class OrderController {
     * @param orderNo 订单号，trackingNumber 快递单号
     * @return 订单发货结果
     * */
+    @Operation(summary = "订单已发货，未收货", description = "订单已发货，未收货")
     @RequestMapping("/delivered/{orderNo}/{trackingNumber}")
     public ResultVO<String> deliveredOrder(@Validated @PathVariable("orderNo") String orderNo, @Validated @PathVariable("trackingNumber") String trackingNumber) {
         try {
@@ -75,6 +81,7 @@ public class OrderController {
     * @param orderNo 订单号
     * @return 订单收货结果
     * */
+    @Operation(summary = "订单已收货，未评价", description = "订单已收货，未评价")
     @RequestMapping("/received/{orderNo}")
     public ResultVO<String> receivedOrder(@Validated @PathVariable("orderNo") String orderNo) {
         try {
@@ -91,6 +98,7 @@ public class OrderController {
     * @param orderNo 订单号
     * @return 订单取消结果
     * */
+    @Operation(summary = "取消订单", description = "取消订单")
     @RequestMapping("/cancel/{orderNo}")
     public ResultVO<String> cancelOrder(@Validated @PathVariable("orderNo") String orderNo) {
         try {
@@ -109,6 +117,7 @@ public class OrderController {
      * @param buyerId
      * @return 订单Id列表
      */
+    @Operation(summary = "获取用户的购买商品列表", description = "获取用户的购买商品列表")
     @RequestMapping("/list/{buyerId}")
     public List<Order> listOrders(@Validated @PathVariable("buyerId") Integer buyerId) {
         return orderService.getListOrders(buyerId);
