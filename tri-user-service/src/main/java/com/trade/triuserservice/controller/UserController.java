@@ -2,25 +2,17 @@ package com.trade.triuserservice.controller;
 
 
 import com.trade.triuserservice.domain.dto.LoginDTO;
+import com.trade.triapi.dto.UserIdentityDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
 import com.trade.triuserservice.domain.dto.UserUpdateDTO;
-import com.trade.triuserservice.domain.po.User;
 import com.trade.triuserservice.domain.vo.ResultVO;
 import com.trade.triuserservice.domain.vo.UserRegisterVO;
 import com.trade.triuserservice.service.UserService;
-import com.trade.triuserservice.utils.UserContext;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -83,6 +75,17 @@ public class UserController {
         } catch (Exception e) {
             return ResultVO.error("修改失败，请稍后重试");
         }
+    }
+
+    /**
+     * 根据用户ID查询用户name,avatarImageId
+     * @param userId 用户ID
+     * @return UserIdentityDTO
+     * */
+    @Operation(summary = "根据用户ID查询用户name,avatarImageId", description = "根据用户ID查询用户name,avatarImageId")
+    @GetMapping("/getUserIdentity/{userId}")
+    public UserIdentityDTO getUserIdentity(@PathVariable String userId) {
+        return userService.getUserIdentity(userId);
     }
 
 }

@@ -2,6 +2,7 @@ package com.trade.triuserservice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trade.triuserservice.domain.dto.LoginDTO;
+import com.trade.triapi.dto.UserIdentityDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
 import com.trade.triuserservice.domain.dto.UserUpdateDTO;
 import com.trade.triuserservice.domain.po.User;
@@ -19,4 +20,7 @@ public interface UserService extends IService<User> {
     String login(LoginDTO loginDTO);
 
     void update(UserUpdateDTO userUpdateDTO);
+
+
+    UserIdentityDTO getUserIdentity(String userId);
 }

@@ -3,6 +3,7 @@ package com.trade.triuserservice.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trade.triuserservice.domain.dto.LoginDTO;
+import com.trade.triapi.dto.UserIdentityDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
 import com.trade.triuserservice.domain.dto.UserUpdateDTO;
 import com.trade.triuserservice.domain.po.User;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
@@ -135,6 +135,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         this.update(user, queryWrapper);
     }
 
+    @Override
+    public UserIdentityDTO getUserIdentity(String userId) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("user_name", "avatar_image_id").eq("id", userId);
+        User user = this.getOne(queryWrapper);
+        return new UserIdentityDTO()
+                .setUserId(userId)
+                .setUserName(user.getUserName())
+                .setAvatarImageId(user.getAvatarImageId());
+    }
 
 }
 
