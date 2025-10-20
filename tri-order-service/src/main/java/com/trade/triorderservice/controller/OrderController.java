@@ -1,6 +1,7 @@
 package com.trade.triorderservice.controller;
 
 import com.trade.triorderservice.domain.dto.OrderDTO;
+import com.trade.triorderservice.domain.dto.OrderListDTO;
 import com.trade.triorderservice.domain.po.Order;
 import com.trade.triorderservice.domain.vo.ResultVO;
 import com.trade.triorderservice.service.OrderService;
@@ -114,12 +115,14 @@ public class OrderController {
     /**
      * 获取用户的购买商品列表
      *
-     * @param buyerId
+     * @param buyerId pageSize pageNo
      * @return 订单Id列表
      */
     @Operation(summary = "获取用户的购买商品列表", description = "获取用户的购买商品列表")
-    @RequestMapping("/list/{buyerId}")
-    public List<Order> listOrders(@Validated @PathVariable("buyerId") Integer buyerId) {
-        return orderService.getListOrders(buyerId);
+    @RequestMapping("/list/{buyerId}/pageNum/pageSize")
+    public OrderListDTO getListOrders(@Validated @PathVariable("buyerId") Integer buyerId, @Validated @PathVariable("pageSize") Integer pageSize, @Validated @PathVariable("pageNum") Integer pageNum) {
+        OrderListDTO orderListDTO = orderService.getListOrders(buyerId, pageSize, pageNum);
+        return orderListDTO;
     }
+
 }

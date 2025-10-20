@@ -1,8 +1,10 @@
 package com.trade.triorderservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trade.triorderservice.domain.dto.OrderDTO;
+import com.trade.triorderservice.domain.dto.OrderListDTO;
 import com.trade.triorderservice.domain.po.Order;
 import com.trade.triorderservice.mapper.OrderMapper;
 import com.trade.triorderservice.service.OrderService;
@@ -102,10 +104,22 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public List<Order> getListOrders(Integer buyerId) {
+    public OrderListDTO getListOrders(Integer buyerId, Integer pageSize, Integer pageNo) {
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("buyer_id", buyerId);
-        return this.list(queryWrapper);
+
+        // 创建分页对象
+        Page<Order> page = new Page<>(pageNo, pageSize);
+
+        // 执行分页查询
+        Page<Order> resultPage = this.page(page, queryWrapper);
+
+        // 封装到 OrderListDTO
+        OrderListDTO orderListDTO = new OrderListDTO();
+        orderListDTO.setOrderList(resultPage.getRecords())
+                .setBuyerId(String.valueOf(buyerId));
+
+        return orderListDTO;
     }
 
 
