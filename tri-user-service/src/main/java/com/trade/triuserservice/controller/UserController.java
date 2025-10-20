@@ -2,6 +2,7 @@ package com.trade.triuserservice.controller;
 
 
 import com.trade.triuserservice.domain.dto.LoginDTO;
+import com.trade.triuserservice.domain.dto.UserIdentityDTO;
 import com.trade.triuserservice.domain.dto.UserRegisterDTO;
 import com.trade.triuserservice.domain.dto.UserUpdateDTO;
 import com.trade.triuserservice.domain.po.User;
@@ -83,6 +84,17 @@ public class UserController {
         } catch (Exception e) {
             return ResultVO.error("修改失败，请稍后重试");
         }
+    }
+
+    /**
+     * 根据用户ID查询用户name,avatarImageId
+     * @param userId 用户ID
+     * @return UserIdentityDTO
+     * */
+    @Operation(summary = "根据用户ID查询用户name,avatarImageId", description = "根据用户ID查询用户name,avatarImageId")
+    @GetMapping("/getNameAndAvatorImageIdByUserId/{userId}")
+    public UserIdentityDTO getNameAndAvatorImageIdByUserId(@PathVariable String userId) {
+        return userService.getNameAndAvatorImageIdByUserId(userId);
     }
 
 }
