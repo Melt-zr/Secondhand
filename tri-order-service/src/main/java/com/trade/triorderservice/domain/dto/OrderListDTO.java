@@ -11,5 +11,5 @@ import java.util.List;
 public class OrderListDTO {
     private String buyerId;
 
-    private List<Order> orderList;
+    private List<OrderIdentityDTO> orderList;
 }

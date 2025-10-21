@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trade.triorderservice.domain.dto.OrderDTO;
+import com.trade.triorderservice.domain.dto.OrderIdentityDTO;
 import com.trade.triorderservice.domain.dto.OrderListDTO;
 import com.trade.triorderservice.domain.po.Order;
 import com.trade.triorderservice.mapper.OrderMapper;
@@ -114,10 +115,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         // 执行分页查询
         Page<Order> resultPage = this.page(page, queryWrapper);
 
-        // 封装到 OrderListDTO
+        // 将Order转换为OrderIdentityDTO 封装到 OrderListDTO
+        List<OrderIdentityDTO> orderList = resultPage.getRecords().stream()
+                .map(order -> new OrderIdentityDTO()
+                        .setOrderNo(order.getOrderNo())
+                        .setBuyerId(order.getBuyerId())
+                        .setSellerId(order.getSellerId())
+                        .setProductId(order.getProductId())
+                        .setTotalPrice(order.getTotalPrice())
+                        .setStatus(order.getStatus())
+                )
+                .toList();
+
         OrderListDTO orderListDTO = new OrderListDTO();
-        orderListDTO.setOrderList(resultPage.getRecords())
-                .setBuyerId(String.valueOf(buyerId));
+        orderListDTO.setBuyerId(String.valueOf(buyerId))
+                .setOrderList(orderList);
 
         return orderListDTO;
     }
