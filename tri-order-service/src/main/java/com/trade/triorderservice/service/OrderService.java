@@ -2,7 +2,7 @@ package com.trade.triorderservice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trade.triorderservice.domain.dto.OrderDTO;
-import com.trade.triorderservice.domain.dto.OrderListDTO;
+import com.trade.triorderservice.domain.dto.OrderIdentityDTO;
 import com.trade.triorderservice.domain.po.Order;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public interface OrderService extends IService<Order> {
 
     void cancelOrder(String orderNo);
 
-    OrderListDTO getListOrders(Integer buyerId, Integer pageSize, Integer pageNo);
+    List<OrderIdentityDTO> getListOrders(Integer buyerId, Integer pageSize, Integer pageNo);
 }

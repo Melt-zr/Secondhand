@@ -1,8 +1,7 @@
 package com.trade.triorderservice.controller;
 
 import com.trade.triorderservice.domain.dto.OrderDTO;
-import com.trade.triorderservice.domain.dto.OrderListDTO;
-import com.trade.triorderservice.domain.po.Order;
+import com.trade.triorderservice.domain.dto.OrderIdentityDTO;
 import com.trade.triorderservice.domain.vo.ResultVO;
 import com.trade.triorderservice.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -120,9 +119,8 @@ public class OrderController {
      */
     @Operation(summary = "获取用户的购买商品列表", description = "获取用户的购买商品列表")
     @RequestMapping("/list/{buyerId}/pageNum/pageSize")
-    public OrderListDTO getListOrders(@Validated @PathVariable("buyerId") Integer buyerId, @Validated @PathVariable("pageSize") Integer pageSize, @Validated @PathVariable("pageNum") Integer pageNum) {
-        OrderListDTO orderListDTO = orderService.getListOrders(buyerId, pageSize, pageNum);
-        return orderListDTO;
+    public List<OrderIdentityDTO> getListOrders(@Validated @PathVariable("buyerId") Integer buyerId, @Validated @PathVariable("pageSize") Integer pageSize, @Validated @PathVariable("pageNum") Integer pageNum) {
+        return orderService.getListOrders(buyerId, pageSize, pageNum);
     }
 
 }

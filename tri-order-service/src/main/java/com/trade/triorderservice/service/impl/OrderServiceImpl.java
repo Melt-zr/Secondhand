@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trade.triorderservice.domain.dto.OrderDTO;
 import com.trade.triorderservice.domain.dto.OrderIdentityDTO;
-import com.trade.triorderservice.domain.dto.OrderListDTO;
 import com.trade.triorderservice.domain.po.Order;
 import com.trade.triorderservice.mapper.OrderMapper;
 import com.trade.triorderservice.service.OrderService;
@@ -105,7 +104,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public OrderListDTO getListOrders(Integer buyerId, Integer pageSize, Integer pageNo) {
+    public List<OrderIdentityDTO> getListOrders(Integer buyerId, Integer pageSize, Integer pageNo) {
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("buyer_id", buyerId);
 
@@ -127,11 +126,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 )
                 .toList();
 
-        OrderListDTO orderListDTO = new OrderListDTO();
-        orderListDTO.setBuyerId(String.valueOf(buyerId))
-                .setOrderList(orderList);
-
-        return orderListDTO;
+        return orderList;
     }
 
 
